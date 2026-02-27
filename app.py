@@ -33,8 +33,10 @@ def get_models():
 try:
     model, scaler = get_models()
     models_ready = True
+    load_error = ""
 except Exception as e:
     models_ready = False
+    load_error = str(e)
 
 # ----------------------------
 # CSS Styling (Premium + Background Image + Grapes)
@@ -187,7 +189,7 @@ st.markdown("<div class='header-title'>Wine Quality Prediction</div>", unsafe_al
 st.markdown("<div class='header-sub'>Evaluating wine characteristics with advanced Machine Learning.</div>", unsafe_allow_html=True)
 
 if not models_ready:
-    st.error("⚠️ System Offline: Model configuration files missing.")
+    st.error(f"⚠️ System Offline: Model configuration files missing. Details: {load_error}")
     st.stop()
 
 # ----------------------------
